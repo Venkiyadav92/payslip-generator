@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,17 +7,21 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const storedUser = JSON.parse(localStorage.getItem(email));
-    if (storedUser && storedUser.password === password) {
-      alert('Login successful');
-      navigate('/payslip');
-    } else {
-      alert('Invalid credentials');
-      console.log("error")
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/login`, {
+        email,
+        password,
+      });
+  
+      console.log("Login successful:", response.data);
+      // do something with the token or response
+    } catch (err) {
+      console.error("Login error:", err.response?.data || err.message);
     }
   };
+  
 
   return (
     <div style={container}>
