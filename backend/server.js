@@ -10,8 +10,21 @@ const employeeRoutes = require('./routes/employeeRoutes');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
 app.use(bodyParser.json());
+
+const allowedOrigins = ['https://payslip-generator-alpha.vercel.app/'];
+
+// Set up CORS configuration
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions)); // Use CORS middleware
+
+const mongoURI = 'mongodb+srv://vyvenkateshyadav:venki@cluster0.qd0ip.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
