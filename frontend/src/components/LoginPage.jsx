@@ -30,7 +30,20 @@ function LoginPage() {
         <label>Email:</label>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={input} />
         <label style={{ marginTop: '10px' }}>Password:</label>
-        <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} style={input} />
+        <input
+  type="password"
+  required
+  autoComplete="current-password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  style={{
+    padding: '10px',
+    borderRadius: '5px',
+    border: '1px solid rgb(204, 204, 204)',
+    marginTop: '5px'
+  }}
+/>
+
         <button type="submit" style={button}>Login</button>
       </form>
     </div>
