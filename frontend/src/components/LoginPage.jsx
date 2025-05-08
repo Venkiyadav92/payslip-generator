@@ -14,6 +14,7 @@ function LoginPage() {
       navigate('/payslip');
     } else {
       alert('Invalid credentials');
+      console.log("error")
     }
   };
 

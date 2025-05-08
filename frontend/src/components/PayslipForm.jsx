@@ -23,7 +23,8 @@ function PayslipForm() {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/employees');
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/some-endpoint`);
+
         setEmployees(res.data);
       } catch (err) {
         console.error('Error fetching employees:', err);
@@ -53,7 +54,8 @@ function PayslipForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/payslip/payslip', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/some-endpoint`
+      , formData);
       setResult(response.data);
     } catch (error) {
       console.error('Error generating payslip:', error);
