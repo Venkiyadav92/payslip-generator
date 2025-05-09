@@ -54,7 +54,7 @@ function PayslipForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/some-endpoint`
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/payslip/payslip`
       , formData);
       setResult(response.data);
     } catch (error) {
