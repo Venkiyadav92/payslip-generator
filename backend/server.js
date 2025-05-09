@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Set up CORS configuration
 
 
-const cors = require('cors');
+
 app.use(cors({ origin: 'https://payslip-generator-alpha.vercel.app/' }));
 
 const mongoURI = 'mongodb+srv://vyvenkateshyadav:venki@cluster0.qd0ip.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
