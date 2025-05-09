@@ -19,7 +19,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'https://payslip-generator-alpha.vercel.app/', // Replace with your React frontend URL
+  origin: 'https://payslip-generator-alpha.vercel.app', // Replace with your React frontend URL
   credentials: true // if you're sending cookies or using sessions
 }));
 
