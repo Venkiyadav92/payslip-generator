@@ -23,7 +23,7 @@ function PayslipForm() {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/some-endpoint`);
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/employees`);
 
         setEmployees(res.data);
       } catch (err) {
