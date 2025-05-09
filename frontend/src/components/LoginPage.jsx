@@ -6,16 +6,29 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const storedUser = JSON.parse(localStorage.getItem(email));
-    if (storedUser && storedUser.password === password) {
-      alert('Login successful');
-      navigate('/payslip');
-    } else {
-      alert('Invalid credentials');
-    }
-  };
+ const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('https://payslip-generator-8.onrender.com/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include', // only if using cookies
+      body: JSON.stringify({ email, password })
+    });
+
+    if (!response.ok) throw new Error('Invalid credentials');
+
+    const data = await response.json();
+    alert('Login successful');
+    navigate('/payslip');
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
 
   return (
     <div style={container}>
