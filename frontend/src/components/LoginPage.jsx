@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,21 +6,16 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/employees`, {
-        email,
-        password,
-      });
-  
-      console.log("Login successful:", response.data);
-      // do something with the token or response
-    } catch (err) {
-      console.error("Login error:", err.response?.data || err.message);
+    const storedUser = JSON.parse(localStorage.getItem(email));
+    if (storedUser && storedUser.password === password) {
+      alert('Login successful');
+      navigate('/payslip');
+    } else {
+      alert('Invalid credentials');
     }
   };
-  
 
   return (
     <div style={container}>
@@ -30,20 +24,7 @@ function LoginPage() {
         <label>Email:</label>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} style={input} />
         <label style={{ marginTop: '10px' }}>Password:</label>
-        <input
-  type="password"
-  required
-  autoComplete="current-password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  style={{
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid rgb(204, 204, 204)',
-    marginTop: '5px'
-  }}
-/>
-
+        <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} style={input} />
         <button type="submit" style={button}>Login</button>
       </form>
     </div>
